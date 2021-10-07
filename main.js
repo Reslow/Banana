@@ -3,15 +3,14 @@ import "./style.css";
 let todoItems = [];
 
 function renderTodo(todo) {
-
-  localStorage.setItem('todoItemsRef', JSON.stringify(todoItems));
+  localStorage.setItem("todoItemsRef", JSON.stringify(todoItems));
 
   const list = document.querySelector(".todoList");
   const item = document.querySelector(`[data-key='${todo.id}']`);
 
   if (todo.deleted) {
     item.remove();
-    if (todoItems.length === 0) list.innerHTML = '';
+    if (todoItems.length === 0) list.innerHTML = "";
     return;
   }
 
@@ -83,17 +82,16 @@ list.addEventListener("click", (event) => {
 
   if (event.target.classList.contains("deleteTodo")) {
     const itemKey = event.target.parentElement.dataset.key;
-    console.log(itemKey);
     deleteTodo(itemKey);
   }
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-  const ref = localStorage.getItem('todoItemsRef')
-if(ref){
-  todoItems = JSON.parse(ref)
-  todoItems.forEach(t => {
-    renderTodo(t)
-  })
-}
-})
+document.addEventListener("DOMContentLoaded", () => {
+  const ref = localStorage.getItem("todoItemsRef");
+  if (ref) {
+    todoItems = JSON.parse(ref);
+    todoItems.forEach((t) => {
+      renderTodo(t);
+    });
+  }
+});
